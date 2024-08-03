@@ -9,7 +9,7 @@ public class Person implements Serializable {
     private LocalDate deathDate;
     private Person mother;
     private Person father;
-    private List<Person> children = new ArrayList<>();
+    private List<Person> children;
 
     public Person(String name, LocalDate birthDate, LocalDate deathDate, Person mother, Person father) {
         this.name = name;
@@ -17,6 +17,7 @@ public class Person implements Serializable {
         this.deathDate = deathDate;
         this.mother = mother;
         this.father = father;
+        this.children = new ArrayList<>();
     }
 
     public String getName() {
@@ -47,25 +48,12 @@ public class Person implements Serializable {
         children.add(child);
     }
 
-    public void addParent(Person parent) {
-        if (parent != null) {
-            if (parent.getGender().equals("мужской")) {
-                this.father = parent;
-            } else {
-                this.mother = parent;
-            }
-        }
-    }
-
-    private Object getGender() {
-        throw new UnsupportedOperationException("Unimplemented method 'getGender'");
-    }
-
     @Override
     public String toString() {
-        return "Имя: " + name + ", Дата рождения: " + birthDate +
-               ", Дата смерти: " + (deathDate != null ? deathDate : "Живой") +
-               ", Мать: " + (mother != null ? mother.getName() : "Нет данных") +
+        return "Имя: " + name + 
+               ", Дата рождения: " + birthDate + 
+               ", Дата смерти: " + (deathDate != null ? deathDate : "Живой") + 
+               ", Мать: " + (mother != null ? mother.getName() : "Нет данных") + 
                ", Отец: " + (father != null ? father.getName() : "Нет данных");
     }
 }

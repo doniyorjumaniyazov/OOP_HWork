@@ -27,10 +27,6 @@ public class FamilyTree implements Serializable {
         return people;
     }
 
-    public void setPeople(List<Person> people) {
-        this.people = people;
-    }
-
     public void printFamilyTree() {
         for (Person person : people) {
             System.out.println(person);

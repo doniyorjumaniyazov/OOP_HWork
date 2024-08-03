@@ -22,32 +22,34 @@ public class Main {
         familyTree.addPerson(sevora);
         familyTree.addPerson(samiy);
 
-        // Вариант 1: Получение и вывод всех детей выбранного человека
-        System.out.println("Вариант 1: Дети Дониёра");
+        // Вывод информации о всех людях
+        System.out.println("Список всех людей в генеалогическом древе:");
+        familyTree.printFamilyTree();
+
+        // Получение и вывод всех детей выбранного человека
+        System.out.println("\nДети Дониёра:");
         List<Person> childrenOfDoniyor = familyTree.getChildren(doniyor);
         for (Person child : childrenOfDoniyor) {
             System.out.println(child.getName());
         }
 
-        // Вариант 2: Вывод всей информации о человеке
-        System.out.println("\nВариант 2: Информация о Рустаме");
+        // Вывод всей информации о человеке
+        System.out.println("\nИнформация о Рустаме:");
         System.out.println(rustam);
 
-        System.out.println("\nВариант 2: Информация о Севара");
+        System.out.println("\nИнформация о Севаре:");
         System.out.println(sevora);
 
         // Сохранение в файл и загрузка из файла
-        FileHandler fileHandler = new FileHandler(familyTree);
+        FileHandler fileHandler = new FileHandler();
 
         try {
             // Сохранение в файл
-            fileHandler.saveToFile("family_tree.ser");
+            fileHandler.saveToFile(familyTree, "family_tree.ser");
             System.out.println("\nДрево сохранено в файл.");
 
             // Очистка текущего древа и загрузка из файла
-            familyTree = new FamilyTree();
-            fileHandler = new FileHandler(familyTree);
-            fileHandler.loadFromFile("family_tree.ser");
+            familyTree = fileHandler.loadFromFile("family_tree.ser");
             System.out.println("\nДрево загружено из файла.");
             familyTree.printFamilyTree();
         } catch (IOException | ClassNotFoundException e) {

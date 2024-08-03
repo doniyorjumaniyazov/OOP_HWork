@@ -1,5 +1,3 @@
-// Класс Research - отвечает за проведение различных исследований.
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +12,14 @@ public class Research {
         for (Person person : familyTree.getPeople()) {
             if (person.getName().equals(parentName)) {
                 List<Person> children = familyTree.getChildren(person);
-                System.out.println("Детишки " + parentName + ":");
+                System.out.println("Дети " + parentName + ":");
                 for (Person child : children) {
                     System.out.println(child.getName());
                 }
                 return;
             }
         }
-        System.out.println("Родители не найено. ");
+        System.out.println("Родитель не найден.");
     }
 
     public List<Person> getDescendants(Person ancestor) {
